@@ -152,10 +152,5 @@
     .title {
       font-size: 2rem;
     }
-
-    .calendar-grid {
-      /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
-      /* gap: 0.75rem; */
-    }
   }
 </style>

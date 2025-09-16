@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import AdventDay from './advent-day.svelte';
 	import type { AdventDayData } from './types';
+	import calendarData from '$lib/assets/data.json';
+  import Icon from '@iconify/svelte';
 
 	export let year: number = new Date().getFullYear();
 	export let onDayClick: ((day: number, data: AdventDayData) => void) | undefined = undefined;
@@ -12,17 +14,16 @@
 	let isOctober = currentMonth === 10;
 	let today = new Date().getDate();
 
-	// Generar datos para los 24 días de adviento
+	// Datos del calendario desde JSON
 	let adventDays: AdventDayData[] = [];
 
 	function generateAdventDays() {
-		console.log('Generando días - testMode:', testMode, 'isOctober:', isOctober, 'today:', today);
-		adventDays = Array.from({ length: 31 }, (_, index) => {
-			const dayNumber = index + 1;
+		console.log('Generando días desde JSON - testMode:', testMode, 'isOctober:', isOctober, 'today:', today);
+		
+		adventDays = calendarData.data.map((dayData, index) => {
+			const dayNumber = dayData.day;
 			const isPast = isOctober && dayNumber <= today;
 			const isToday = isOctober && dayNumber === today;
-			const isAnniversary = dayNumber === 18;
-			const isBirthday = dayNumber === 31;
 			
 			// En modo prueba, todos los días están desbloqueados
 			// En modo normal, solo los días futuros están bloqueados (si estamos en octubre)
@@ -38,10 +39,10 @@
 				isPast,
 				isToday,
 				isLocked,
-				content: getDayContent(dayNumber, isAnniversary, isBirthday),
-				reward: getDayReward(dayNumber, isAnniversary, isBirthday),
-				backgroundColor: getDayBackgroundColor(dayNumber, isAnniversary, isBirthday),
-				icon: getDayIcon(dayNumber, isAnniversary, isBirthday)
+				content: dayData.content,
+				reward: dayData.reward,
+				backgroundColor: dayData.backgroundColor,
+				icon: dayData.icon
 			};
 		});
 	}
@@ -50,45 +51,11 @@
 		generateAdventDays();
 	});
 
-	// Reaccionar a cambios en testMode
 	$: {
 		console.log('testMode cambió a:', testMode);
 		generateAdventDays();
 	}
 
-	function getDayContent(day: number, isAnniversary: boolean, isBirthday: boolean): string {
-		if (isAnniversary) return "¡8 años juntos! 💕";
-		if (isBirthday) return "¡Feliz cumpleaños! 🎂";
-		return `Día ${day}`;
-	}
-
-	function getDayReward(day: number, isAnniversary: boolean, isBirthday: boolean): string {
-		if (isAnniversary) return "Aniversario Especial";
-		if (isBirthday) return "Cumpleaños de mi Amor";
-		return `Sorpresa ${day}`;
-	}
-
-	function getDayBackgroundColor(day: number, isAnniversary: boolean, isBirthday: boolean): string {
-		if (isAnniversary) return '#F7A5A5'; // Rosa especial para aniversario
-		if (isBirthday) return '#FFDBB6'; // Melocotón para cumpleaños
-		return getRandomBackgroundColor();
-	}
-
-	function getDayIcon(day: number, isAnniversary: boolean, isBirthday: boolean): string {
-		if (isAnniversary) return '💕';
-		if (isBirthday) return '🎂';
-		return getRandomIcon();
-	}
-
-	function getRandomBackgroundColor(): string {
-		const colors = ['#5D688A', '#F7A5A5', '#FFDBB6', '#FFF2EF'];
-		return colors[Math.floor(Math.random() * colors.length)];
-	}
-
-	function getRandomIcon(): string {
-		const icons = ['🍂', '🍁', '🌻', '🌺', '🌸', '🌼', '🌷', '🌹', '💐', '🎃', '🕷️', '🦇', '👻', '🎭', '🎪', '🎨', '🎭', '🎪', '🎨', '🎭', '🎪', '🎨', '🎭', '🎪', '🎨', '🎭', '🎪', '🎨', '🎭', '🎪'];
-		return icons[Math.floor(Math.random() * icons.length)];
-	}
 
 	function handleDayClick(day: number, data: AdventDayData) {
 		if (data.isLocked) return;
@@ -115,23 +82,6 @@
 			/>
 		{/each}
 	</div>
-
-	<div class="calendar-footer">
-		<div class="legend">
-			<div class="legend-item">
-				<div class="legend-box locked"></div>
-				<span>Próximamente</span>
-			</div>
-			<div class="legend-item">
-				<div class="legend-box available"></div>
-				<span>Disponible</span>
-			</div>
-			<div class="legend-item">
-				<div class="legend-box today"></div>
-				<span>Hoy</span>
-			</div>
-		</div>
-	</div>
 </div>
 
 <style>
@@ -150,26 +100,26 @@
 	.title {
 		font-size: 2.5rem;
 		font-weight: bold;
-		color: #5D688A;
+		color: #bd7d62;
 		margin-bottom: 0.5rem;
-		text-shadow: 2px 2px 4px rgba(93, 104, 138, 0.2);
+		text-shadow: 2px 2px 4px rgba(189, 125, 98, 0.2);
 	}
 
 	.subtitle {
 		font-size: 1.1rem;
-		color: #F7A5A5;
+		color: #d49270;
 		margin: 0;
 	}
 
 	.test-mode-banner {
-		background: linear-gradient(45deg, #F7A5A5, #FFDBB6);
-		color: white;
+		background: linear-gradient(45deg, #d49270, #f4d6b4);
+		color: #f7ebdb;
 		padding: 0.5rem 1rem;
 		border-radius: 25px;
 		font-weight: bold;
 		margin-top: 1rem;
 		animation: pulse 2s infinite;
-		box-shadow: 0 4px 8px rgba(247, 165, 165, 0.3);
+		box-shadow: 0 4px 8px rgba(212, 146, 112, 0.3);
 	}
 
 	.calendar-grid {
@@ -179,45 +129,6 @@
 		margin-bottom: 2rem;
 	}
 
-	.calendar-footer {
-		text-align: center;
-	}
-
-	.legend {
-		display: flex;
-		justify-content: center;
-		gap: 2rem;
-		flex-wrap: wrap;
-	}
-
-	.legend-item {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.9rem;
-		color: #5D688A;
-	}
-
-	.legend-box {
-		width: 20px;
-		height: 20px;
-		border-radius: 4px;
-		border: 2px solid #5D688A;
-	}
-
-	.legend-box.locked {
-		background-color: #FFF2EF;
-		opacity: 0.6;
-	}
-
-	.legend-box.available {
-		background-color: #FFDBB6;
-	}
-
-	.legend-box.today {
-		background-color: #F7A5A5;
-		animation: pulse 2s infinite;
-	}
 
 	@keyframes pulse {
 		0%, 100% { transform: scale(1); }
@@ -236,10 +147,6 @@
 		.calendar-grid {
 			grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 			gap: 0.75rem;
-		}
-
-		.legend {
-			gap: 1rem;
 		}
 	}
 </style> 

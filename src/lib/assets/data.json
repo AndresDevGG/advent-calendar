@@ -5,217 +5,248 @@
             "content": "¡Bienvenido a octubre! 🍂\n\nEl primer día de nuestro mes especial. Cada día será una nueva sorpresa llena de amor.",
             "reward": "Inicio del Mes",
             "backgroundColor": "#f7ebdb",
-            "icon": "cloud-line"
+            "icon": "cloud-line",
+            "illustration": "/illustrations/illustration-1.png"
         },
         {
             "day": 2,
             "content": "Día de risas compartidas 😄\n\nHoy te regalo una sonrisa y la promesa de que siempre te haré reír, incluso en los días más grises.",
             "reward": "Sonrisa Especial",
             "backgroundColor": "#f4d6b4",
-            "icon": "angel-line"
+            "icon": "angel-line",
+            "illustration": "/illustrations/illustration-2.png"
         },
         {
             "day": 3,
             "content": "Momento de paz juntos 🕯️\n\nUna velada tranquila, solo tú y yo, disfrutando de la calma y la compañía del otro.",
             "reward": "Paz Compartida",
             "backgroundColor": "#d8b186",
-            "icon": "candle-line"
+            "icon": "candle-line",
+            "illustration": "/illustrations/illustration-3.png"
         },
         {
             "day": 4,
             "content": "Aventura culinaria 👨‍🍳\n\nHoy cocinamos juntos algo delicioso. La cocina es más divertida cuando estamos los dos.",
             "reward": "Chef por un Día",
             "backgroundColor": "#f7ebdb",
-            "icon": "full-moon-line"
+            "icon": "full-moon-line",
+            "illustration": "/illustrations/illustration-4.png"
         },
         {
             "day": 5,
             "content": "Día de música y baile 🎵\n\nPonemos nuestra canción favorita y bailamos como si nadie nos viera. Solo tú y yo.",
             "reward": "Bailarines del Corazón",
             "backgroundColor": "#f4d6b4",
-            "icon": "music-2-line"
+            "icon": "music-2-line",
+            "illustration": "/illustrations/illustration-5.png"
         },
         {
             "day": 6,
             "content": "Paseo romántico 🌅\n\nUn paseo al atardecer, tomados de la mano, viendo cómo el sol se despide del día.",
             "reward": "Paseo al Atardecer",
             "backgroundColor": "#d8b186",
-            "icon": "sun-2-line"
+            "icon": "sun-2-line",
+            "illustration": "/illustrations/illustration-6.png"
         },
         {
             "day": 7,
             "content": "Día de películas 🎬\n\nMaratón de nuestras películas favoritas, con palomitas y manta compartida.",
             "reward": "Noche de Cine",
             "backgroundColor": "#f7ebdb",
-            "icon": "tv-2-line"
+            "icon": "tv-2-line",
+            "illustration": "/illustrations/illustration-7.png"
         },
         {
             "day": 8,
             "content": "Mensaje de amor 💌\n\nUna carta escrita a mano, con todas las cosas que amo de ti. Las palabras del corazón.",
             "reward": "Carta de Amor",
             "backgroundColor": "#f4d6b4",
-            "icon": "mail-line"
+            "icon": "mail-line",
+            "illustration": "/illustrations/illustration-8.png"
         },
         {
             "day": 9,
             "content": "Día de fotos 📸\n\nCapturamos momentos especiales juntos. Cada foto es un recuerdo que atesoraremos para siempre.",
             "reward": "Memorias Capturadas",
             "backgroundColor": "#d8b186",
-            "icon": "camera-line"
+            "icon": "camera-line",
+            "illustration": "/illustrations/illustration-9.png"
         },
         {
             "day": 10,
             "content": "Desayuno especial 🥞\n\nTe preparo tu desayuno favorito. Empezar el día con amor es la mejor manera.",
             "reward": "Desayuno con Amor",
             "backgroundColor": "#f7ebdb",
-            "icon": "teacup-line"
+            "icon": "teacup-line",
+            "illustration": "/illustrations/illustration-10.png"
         },
         {
             "day": 11,
             "content": "Día de juegos 🎮\n\nCompetimos en nuestros juegos favoritos. El ganador se lleva un beso como premio.",
             "reward": "Noche de Juegos",
             "backgroundColor": "#f4d6b4",
-            "icon": "dandelion-line"
+            "icon": "dandelion-line",
+            "illustration": "/illustrations/illustration-11.png"
         },
         {
             "day": 12,
             "content": "Mensaje de gratitud 🙏\n\nHoy te agradezco por estar en mi vida. Eres mi mayor bendición y mi mayor alegría.",
             "reward": "Gratitud Infinita",
             "backgroundColor": "#d8b186",
-            "icon": "heart-line"
+            "icon": "heart-line",
+            "illustration": "/illustrations/illustration-12.png"
         },
         {
             "day": 13,
             "content": "Día de masajes 💆‍♀️\n\nUna sesión de relajación solo para ti. Te mereces todos los mimos del mundo.",
             "reward": "Relajación Total",
             "backgroundColor": "#f7ebdb",
-            "icon": "bling-line"
+            "icon": "bling-line",
+            "illustration": "/illustrations/illustration-1.png"
         },
         {
             "day": 14,
             "content": "Aventura urbana 🏙️\n\nExploramos nuestra ciudad como turistas. Descubrimos rincones nuevos juntos.",
             "reward": "Exploradores Urbanos",
             "backgroundColor": "#f4d6b4",
-            "icon": "compass-2-line"
+            "icon": "compass-2-line",
+            "illustration": "/illustrations/illustration-2.png"
         },
         {
             "day": 15,
             "content": "Día de lectura 📚\n\nLeemos juntos nuestro libro favorito. Las historias son mejores cuando las compartimos.",
             "reward": "Lectores Compartidos",
             "backgroundColor": "#d8b186",
-            "icon": "book-line"
+            "icon": "book-line",
+            "illustration": "/illustrations/illustration-3.png"
         },
         {
             "day": 16,
             "content": "Mensaje de apoyo 💪\n\nHoy te recuerdo lo fuerte que eres. Puedes con cualquier cosa, y yo estaré aquí para apoyarte.",
             "reward": "Apoyo Incondicional",
             "backgroundColor": "#f7ebdb",
-            "icon": "cactus-line"
+            "icon": "cactus-line",
+            "illustration": "/illustrations/illustration-4.png"
         },
         {   
             "day": 17,
             "content": "Día de regalos sorpresa 🎁\n\nUn pequeño regalo que te hará sonreír. Los detalles pequeños son los que más importan.",
             "reward": "Sorpresa Especial",
             "backgroundColor": "#f4d6b4",
-            "icon": "gift-line"
+            "icon": "gift-line",
+            "illustration": "/illustrations/illustration-5.png"
         },
         {
             "day": 18,
             "content": "¡8 años juntos! 💕\n\nHoy celebramos nuestro aniversario. Cada día a tu lado es una bendición. Te amo más que las palabras pueden expresar.",
             "reward": "Aniversario Especial",
             "backgroundColor": "#d49270",
-            "icon": "heart-line"
+            "icon": "heart-line",
+            "illustration": "/illustrations/illustration-6.png"
         },
         {
             "day": 19,
             "content": "Día de reflexión 🌙\n\nMirando las estrellas juntos, recordando todos los momentos hermosos que hemos compartido.",
             "reward": "Reflexión Estelar",
             "backgroundColor": "#f7ebdb",
-            "icon": "star-line"
+            "icon": "star-line",
+            "illustration": "/illustrations/illustration-7.png"
         },
         {
             "day": 20,
             "content": "Aventura gastronómica 🍽️\n\nProbamos un restaurante nuevo. Cada sabor es una nueva experiencia que compartimos.",
             "reward": "Exploradores Culinarios",
             "backgroundColor": "#f4d6b4",
-            "icon": "pig-line"
+            "icon": "pig-line",
+            "illustration": "/illustrations/illustration-8.png"
         },
         {
             "day": 21,
             "content": "Día de creatividad 🎨\n\nHacemos arte juntos. Pintamos, dibujamos o creamos algo hermoso con nuestras propias manos.",
             "reward": "Artistas del Amor",
             "backgroundColor": "#d8b186",
-            "icon": "palette-line"
+            "icon": "palette-line",
+            "illustration": "/illustrations/illustration-9.png"
         },
         {
             "day": 22,
             "content": "Mensaje de futuro 🌟\n\nSoñamos juntos sobre nuestro futuro. Todos los planes son mejores cuando los hacemos contigo.",
             "reward": "Sueños Compartidos",
             "backgroundColor": "#f7ebdb",
-            "icon": "rocket-line"
+            "icon": "rocket-line",
+            "illustration": "/illustrations/illustration-10.png"
         },
         {
             "day": 23,
             "content": "Día de naturaleza 🌿\n\nUn paseo por el parque, respirando aire fresco y disfrutando de la belleza natural juntos.",
             "reward": "Conectados con la Naturaleza",
             "backgroundColor": "#f4d6b4",
-            "icon": "tree-line"
+            "icon": "tree-line",
+            "illustration": "/illustrations/illustration-11.png"
         },
         {
             "day": 24,
             "content": "Noche de estrellas ⭐\n\nObservamos las estrellas y contamos nuestras historias favoritas bajo el cielo nocturno.",
             "reward": "Bajo las Estrellas",
             "backgroundColor": "#d8b186",
-            "icon": "moon-line"
+            "icon": "moon-line",
+            "illustration": "/illustrations/illustration-12.png"
         },
         {
             "day": 25,
             "content": "Día de tradiciones 🏠\n\nCreamos nuestras propias tradiciones. Los rituales que nos unen y nos hacen únicos.",
             "reward": "Tradiciones Propias",
             "backgroundColor": "#f7ebdb",
-            "icon": "home-4-line"
+            "icon": "home-4-line",
+            "illustration": "/illustrations/illustration-1.png"
         },
         {
             "day": 26,
             "content": "Aventura de fin de semana 🚗\n\nUn viaje corto, solo nosotros dos. Cada kilómetro es una nueva aventura juntos.",
             "reward": "Viajeros del Corazón",
             "backgroundColor": "#f4d6b4",
-            "icon": "car-line"
+            "icon": "car-line",
+            "illustration": "/illustrations/illustration-2.png"
         },
         {
             "day": 27,
             "content": "Día de recuerdos 📷\n\nRevisamos nuestras fotos favoritas y recordamos todos los momentos especiales que hemos vivido.",
             "reward": "Memorias Preciosas",
             "backgroundColor": "#d8b186",
-            "icon": "album-line"
+            "icon": "album-line",
+            "illustration": "/illustrations/illustration-3.png"
         },
         {
             "day": 28,
             "content": "Mensaje de crecimiento 🌱\n\nCelebramos cómo hemos crecido juntos. Cada día aprendemos algo nuevo del otro.",
             "reward": "Crecimiento Compartido",
             "backgroundColor": "#f7ebdb",
-            "icon": "mushroom-line"
+            "icon": "mushroom-line",
+            "illustration": "/illustrations/illustration-4.png"
         },
         {
             "day": 29,
             "content": "Día de relajación total 🧘‍♀️\n\nUna jornada de paz y tranquilidad. Solo nosotros, sin prisas, disfrutando del momento presente.",
             "reward": "Paz Interior",
             "backgroundColor": "#f4d6b4",
-            "icon": "lotus-line"
+            "icon": "lotus-line",
+            "illustration": "/illustrations/illustration-5.png"
         },
         {
             "day": 30,
             "content": "Día de celebración 🎉\n\nCelebramos todo lo bueno que tenemos. La vida es una fiesta cuando estamos juntos.",
             "reward": "Fiesta del Amor",
             "backgroundColor": "#d8b186",
-            "icon": "celebrate-line"
+            "icon": "celebrate-line",
+            "illustration": "/illustrations/illustration-6.png"
         },
         {
             "day": 31,
             "content": "¡Feliz cumpleaños, mi amor! 🎂\n\nQue este nuevo año de vida esté lleno de alegría, amor y todas las cosas hermosas que mereces. Te amo infinitamente.",
             "reward": "Cumpleaños de mi Amor",
             "backgroundColor": "#d49270",
-            "icon": "cake-line"
+            "icon": "cake-line",
+            "illustration": "/illustrations/illustration-7.png"
         }
     ]
 }

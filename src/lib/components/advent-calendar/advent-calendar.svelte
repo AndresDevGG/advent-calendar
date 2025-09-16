@@ -42,7 +42,8 @@
 				content: dayData.content,
 				reward: dayData.reward,
 				backgroundColor: dayData.backgroundColor,
-				icon: dayData.icon
+				icon: dayData.icon,
+				illustration: dayData.illustration
 			};
 		});
 	}

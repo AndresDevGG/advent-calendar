@@ -45,16 +45,22 @@
 	{#if showModal && selectedDay}
 		<div class="modal-overlay" onclick={closeModal} role="button" tabindex="0" onkeydown={(e) => e.key === 'Escape' && closeModal()}>
 			<div class="modal-content" onclick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" tabindex="0" onkeydown={(e) => e.key === 'Escape' && closeModal()}>
-				<button class="close-button" onclick={closeModal}>×</button>
+				<div class="flex justify-between items-center">
+					<div class="day-icon"> <Icon icon={"mingcute:" + selectedDay.icon} /></div>
+
+					<button class="close-button" onclick={closeModal}>×</button>
+				</div>
 				
 				<div class="modal-header">
-					<div class="day-icon"> <Icon icon={"mingcute:" + selectedDay.icon} /></div>
 					<h2>¡Día {selectedDay.day}!</h2>
+					<div class="illustration-container">
+						<img src={selectedDay.illustration} alt="Ilustración del día {selectedDay.day}" class="day-illustration" />
+					</div>
 				</div>
 
 				<div class="modal-body">
 					<h3>{selectedDay.reward}</h3>
-					<p>¡Felicidades! Has descubierto la sorpresa del día {selectedDay.day} de octubre.</p>
+					<!-- <p>¡Felicidades! Has descubierto la sorpresa del día {selectedDay.day} de octubre.</p> -->
 					
 					<div class="reward-content">
 						<p>🎁 Tu recompensa especial:</p>
@@ -81,34 +87,6 @@
 		padding: 2rem 1rem;
 	}
 
-	.controls {
-		text-align: center;
-		margin-bottom: 2rem;
-	}
-
-	.test-toggle {
-		background: #d49270;
-		color: #f7ebdb;
-		border: none;
-		padding: 0.75rem 1.5rem;
-		border-radius: 25px;
-		font-size: 1rem;
-		font-weight: bold;
-		cursor: pointer;
-		transition: all 0.3s ease;
-		box-shadow: 0 4px 8px rgba(212, 146, 112, 0.3);
-	}
-
-	.test-toggle:hover {
-		background: #bd7d62;
-		transform: translateY(-2px);
-		box-shadow: 0 6px 12px rgba(212, 146, 112, 0.4);
-	}
-
-	.test-toggle.active {
-		background: #bd7d62;
-		animation: pulse 2s infinite;
-	}
 
 	.modal-overlay {
 		position: fixed;
@@ -127,8 +105,8 @@
 	.modal-content {
 		background: #f7ebdb;
 		border-radius: 16px;
-		padding: 2rem;
-		max-width: 400px;
+		padding: 1rem;
+		max-width: 500px;
 		width: 100%;
 		position: relative;
 		box-shadow: 0 20px 40px rgba(189, 125, 98, 0.3);
@@ -137,12 +115,9 @@
 	}
 
 	.close-button {
-		position: absolute;
-		top: 1rem;
-		right: 1rem;
 		background: none;
 		border: none;
-		font-size: 1.5rem;
+		font-size: 2.5rem;
 		color: #bd7d62;
 		cursor: pointer;
 		width: 32px;
@@ -152,6 +127,7 @@
 		align-items: center;
 		justify-content: center;
 		transition: background-color 0.2s;
+		padding-bottom: 5px;
 	}
 
 	.close-button:hover {
@@ -163,9 +139,29 @@
 		margin-bottom: 1.5rem;
 	}
 
+	.illustration-container {
+		margin-bottom: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.day-illustration {
+		max-width: 400px;
+		max-height: 400px;
+		width: auto;
+		height: auto;
+		border-radius: 12px;
+		box-shadow: 0 8px 16px rgba(189, 125, 98, 0.2);
+		transition: transform 0.3s ease;
+	}
+
+	.day-illustration:hover {
+		transform: scale(1.05);
+	}
+
 	.day-icon {
-		font-size: 3rem;
-		margin-bottom: 0.5rem;
+		font-size: 2.5rem;
 		color: #bd7d62;
 		display: flex;
 		align-items: center;
@@ -259,10 +255,16 @@
 	@media (max-width: 768px) {
 		.modal-content {
 			padding: 1.5rem;
+			max-width: 90vw;
+		}
+
+		.day-illustration {
+			max-width: 400px;
+			max-height: 400px;
 		}
 
 		.day-icon {
-			font-size: 2.5rem;
+			font-size: 2rem;
 		}
 
 		.modal-header h2 {

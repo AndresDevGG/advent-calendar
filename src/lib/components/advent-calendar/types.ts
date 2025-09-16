@@ -7,6 +7,7 @@ export interface AdventDayData {
 	reward: string;
 	backgroundColor: string;
 	icon: string;
+	illustration: string;
 }
 
 export interface AdventCalendarConfig {

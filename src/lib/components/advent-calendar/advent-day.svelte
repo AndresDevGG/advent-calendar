@@ -87,7 +87,7 @@
   .advent-day.today {
     border-color: #d49270;
     border-width: 4px;
-    animation: glow 2s ease-in-out infinite alternate;
+    animation: glow 2s ease-in-out infinite alternate, bounce 1.5s ease-in-out infinite;
   }
 
   .advent-day.past {
@@ -170,6 +170,21 @@
     }
     to {
       box-shadow: 0 4px 16px rgba(212, 146, 112, 0.6);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-6px) rotate(4deg);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    75% {
+      transform: translateY(-4px) rotate(-4deg);
     }
   }
 

@@ -15,7 +15,7 @@
     if (dayData.isLocked) return;
 
     isAnimating = true;
-    await new Promise((resolve) => setTimeout(resolve, 300)); // Duración de la animación
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     onClick(dayData.day, dayData);
 
@@ -40,8 +40,8 @@
     }
   }}
 >
-  <div class="day-number text-cream">{dayData.day}</div>
-  <div class="day-icon"><Icon icon={"mingcute:" + dayData.icon} /></div>
+  <div class="day-number" class:text-[#f7ebdb]!={dayData.backgroundColor === "#d49270"}>{dayData.day}</div>
+  <div class="day-icon" class:text-[#f7ebdb]!={dayData.backgroundColor === "#d49270"}><Icon icon={"mingcute:" + dayData.icon} /></div>
 
   {#if dayData.isLocked}
     <div class="lock-overlay">
@@ -118,7 +118,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(247, 235, 219, 0.9);
+    background: rgba(247, 235, 219, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;

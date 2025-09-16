@@ -37,7 +37,6 @@
 <div class="page-container">
 
 	<AdventCalendar 
-		year={2024}
 		{testMode}
 		onDayClick={handleDayClick}
 	/>
@@ -147,12 +146,10 @@
 	}
 
 	.day-illustration {
-		max-width: 400px;
 		max-height: 400px;
 		width: auto;
 		height: auto;
 		border-radius: 12px;
-		box-shadow: 0 8px 16px rgba(189, 125, 98, 0.2);
 		transition: transform 0.3s ease;
 	}
 

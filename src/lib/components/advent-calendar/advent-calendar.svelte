@@ -63,7 +63,7 @@
   });
 
   function handleDayClick(day: number, data: AdventDayData) {
-    if (data.isLocked) return;
+    // if (data.isLocked) return;
     onDayClick(day, data);
   }
 </script>

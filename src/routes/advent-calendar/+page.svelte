@@ -9,12 +9,56 @@
   let showModal = $state(false);
   let testMode = $state(false); // Toggle para modo prueba
   let showConfetti = $state(false);
+  let showAlert = $state(false);
+  let alertMessage = $state('');
+  let alertTimeout: number | null = null;
+
+  let currentIndexError = $state(0);
+  const blockedMessages = [
+    "¡Alto ahí con esas mañas! ✋",
+    "¡Paciencia y respeto! ✋",
+    "¡No tan rápido! 🛑",
+    "¡Eso no está permitido! 🚫",
+    "¡Tramposa! 😤",
+    "¡Espera tu turno! ⏳",
+    "¡No puedes hacer eso! 🙅‍♀️",
+    "¡Alto ahí pequeña! 💕",
+    "¡Esa no es la forma! 🤨",
+    "¡Calma, calma! 😌",
+    "¡No seas ansiosa! 😅",
+    "¡Todo a su tiempo! ⏰",
+    "¡Respira hondo! 🫁",
+    "¡La paciencia es una virtud! 🧘‍♀️",
+    "¡No te adelantes! 🏃‍♀️"
+  ];
 
   function handleDayClick(day: number, data: AdventDayData) {
+    if (data.isLocked) {
+      const randomMessage = blockedMessages[currentIndexError];
+      currentIndexError = (currentIndexError + 1) % blockedMessages.length;
+      showAlertMessage(randomMessage);
+      return;
+    }
+
     showConfetti = day === new Date().getDate();
     selectedDay = data;
     showModal = true;
-    console.log(`¡Día ${day} abierto!`, data);
+  }
+
+  function showAlertMessage(message: string) {
+    // Limpiar el timeout anterior si existe
+    if (alertTimeout) {
+      clearTimeout(alertTimeout);
+    }
+    
+    alertMessage = message;
+    showAlert = true;
+    
+    // Crear nuevo timeout para ocultar la alerta después de 3 segundos
+    alertTimeout = setTimeout(() => {
+      showAlert = false;
+      alertTimeout = null;
+    }, 3000);
   }
 
   function closeModal() {
@@ -25,6 +69,15 @@
   $effect(() => {
     testMode = page.url.searchParams.get("testMode") === "true";
   });
+
+  // Limpiar timeout al desmontar el componente
+  $effect(() => {
+    return () => {
+      if (alertTimeout) {
+        clearTimeout(alertTimeout);
+      }
+    };
+  });
 </script>
 
 <svelte:head>
@@ -33,6 +86,16 @@
 
 <div class="page-container">
   <AdventCalendar {testMode} onDayClick={handleDayClick} />
+
+  <!-- Alerta para tarjetas bloqueadas -->
+  {#if showAlert}
+    <div class="alert-container">
+      <div class="alert-message">
+        <div class="alert-icon">🚫</div>
+        <div class="alert-text">{alertMessage}</div>
+      </div>
+    </div>
+  {/if}
 
   {#if showModal && selectedDay}
     <div
@@ -44,17 +107,7 @@
     >
       {#if showConfetti}
         <div
-          style="
- position: fixed;
- top: -50px;
- left: 0;
- height: 100vh;
- width: 100vw;
- display: flex;
- justify-content: center;
- overflow: hidden;
- pointer-events: none;
- z-index: 10000;"
+		class="fixed top-[-50px] left-0 h-screen w-screen flex justify-center overflow-hidden pointer-events-none z-10000"
         >
           <Confetti
             x={[-5, 5]}
@@ -118,6 +171,39 @@
     min-height: 100vh;
     background: linear-gradient(135deg, #f7ebdb 0%, #f4d6b4 50%, #d8b186 100%);
     padding: 2rem 1rem;
+  }
+
+  .alert-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10001;
+    animation: alertSlideIn 0.5s ease-out;
+  }
+
+  .alert-message {
+    background: linear-gradient(135deg, #d49270, #bd7d62);
+    color: #f7ebdb;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(189, 125, 98, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 2px solid #f4d6b4;
+    animation: alertBounce 0.6s ease-out;
+  }
+
+  .alert-icon {
+    font-size: 1.5rem;
+    animation: alertShake 0.5s ease-in-out;
+  }
+
+  .alert-text {
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .modal-overlay {
@@ -287,6 +373,41 @@
     }
   }
 
+  @keyframes alertSlideIn {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  @keyframes alertBounce {
+    0% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes alertShake {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-10deg);
+    }
+    75% {
+      transform: rotate(10deg);
+    }
+  }
+
   @media (max-width: 768px) {
     .modal-content {
       padding: 1.5rem;
@@ -304,6 +425,19 @@
 
     .modal-header h2 {
       font-size: 1.5rem;
+    }
+
+    .alert-message {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .alert-text {
+      font-size: 1rem;
+    }
+
+    .alert-icon {
+      font-size: 1.2rem;
     }
   }
 </style>

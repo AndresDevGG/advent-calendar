@@ -12,7 +12,7 @@
   let isAnimating = $state(false);
 
   async function handleClick() {
-    if (dayData.isLocked) return;
+    // if (dayData.isLocked) return;
 
     isAnimating = true;
     await new Promise((resolve) => setTimeout(resolve, 300));

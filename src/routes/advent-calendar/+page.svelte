@@ -147,7 +147,7 @@
         </div>
 
         <div class="modal-body">
-          <h3>{selectedDay.reward}</h3>
+          <h3>{selectedDay.description}</h3>
           <!-- <p>¡Felicidades! Has descubierto la sorpresa del día {selectedDay.day} de octubre.</p> -->
 
           <div class="reward-content">
@@ -169,7 +169,7 @@
 <style>
   .page-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #f7ebdb 0%, #f4d6b4 50%, #d8b186 100%);
+    background: linear-gradient(180deg, #f7ebdb 0%, #f4d6b4 50%, #d8b186 100%);
     padding: 2rem 1rem;
   }
 

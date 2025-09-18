@@ -15,7 +15,7 @@
 
   let currentDay = new Date().getDate();
   let currentMonth = new Date().getMonth() + 1; // Enero es 0
-  let isOctober = currentMonth === 9; // Octubre es 10
+  let isOctober = currentMonth === 10; // Octubre es 10
   let today = new Date().getDate();
 
   // Datos del calendario desde JSON
@@ -46,6 +46,7 @@
         isToday,
         isLocked,
         content: dayData.content,
+        description: dayData.description,
         reward: dayData.reward,
         backgroundColor: dayData.backgroundColor,
         icon: dayData.icon,
@@ -66,6 +67,12 @@
     // if (data.isLocked) return;
     onDayClick(day, data);
   }
+
+  $effect(() => {
+
+    const listRewards = adventDays.map((day) => day.reward);
+    console.log(listRewards);
+  });
 </script>
 
 <div class="advent-calendar">

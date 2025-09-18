@@ -4,6 +4,7 @@ export interface AdventDayData {
 	isToday: boolean;
 	isLocked: boolean;
 	content: string;
+	description: string;
 	reward: string;
 	backgroundColor: string;
 	icon: string;

@@ -60,7 +60,7 @@
             "description": "Noche de Cine",
             "reward": "Dangerous Woman",
             "backgroundColor": "#d8b186",
-            "icon": "tv-2-line",
+            "icon": "rabbit-line",
             "illustration": "/illustrations/illustration-7.png"
         },
         {
@@ -69,7 +69,7 @@
             "description": "Carta de Amor",
             "reward": "Sweetener",
             "backgroundColor": "#f7ebdb",
-            "icon": "mail-line",
+            "icon": "hail-line",
             "illustration": "/illustrations/illustration-8.png"
         },
         {
@@ -78,7 +78,7 @@
             "description": "Memorias Capturadas",
             "reward": "Thank U, Next",
             "backgroundColor": "#f4d6b4",
-            "icon": "camera-line",
+            "icon": "shoe-2-line",
             "illustration": "/illustrations/illustration-9.png"
         },
         {
@@ -96,7 +96,7 @@
             "description": "Noche de Juegos",
             "reward": "Eternal Sunshine",
             "backgroundColor": "#f7ebdb",
-            "icon": "dandelion-line",
+            "icon": "bling-line",
             "illustration": "/illustrations/illustration-11.png"
         },
         {
@@ -105,7 +105,7 @@
             "description": "Gratitud Infinita",
             "reward": "Pijama asarosa",
             "backgroundColor": "#d8b186",
-            "icon": "heart-line",
+            "icon": "coat-line",
             "illustration": "/illustrations/illustration-12.png"
         },
         {
@@ -114,7 +114,7 @@
             "description": "Relajación Total",
             "reward": "",
             "backgroundColor": "#f4d6b4",
-            "icon": "bling-line",
+            "icon": "dandelion-line",
             "illustration": "/illustrations/illustration-1.png"
         },
         {

@@ -18,6 +18,15 @@
   let isOctober = currentMonth === 10; // Octubre es 10
   let today = new Date().getDate();
 
+  // Timer para cuenta regresiva hasta octubre
+  let timeUntilOctober = $state({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+  let showTimer = $state(true);
+
   // Datos del calendario desde JSON
   let adventDays: AdventDayData[] = $state([]);
 
@@ -34,7 +43,7 @@
       const isLocked = testMode ? false : isOctober ? dayNumber > today : true;
 
       // Solo log para los primeros 5 días para no saturar la consola
-      if (dayNumber > 14 && dayNumber <= 20) {
+      if (false && dayNumber > 14 && dayNumber <= 20) {
         console.log(
           `Día ${dayNumber}: isLocked=${isLocked} (testMode=${testMode}, isPast=${isPast}, isToday=${isToday})`
         );
@@ -55,8 +64,39 @@
     });
   }
 
+  function updateTimer() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const octoberFirst = new Date(currentYear, 9, 1); // Octubre es mes 9 (0-indexado)
+    
+    // Si ya pasó octubre de este año, calcular para el próximo año
+    if (now > octoberFirst) {
+      octoberFirst.setFullYear(currentYear + 1);
+    }
+    
+    const timeDiff = octoberFirst.getTime() - now.getTime();
+    
+    if (timeDiff <= 0) {
+      showTimer = false;
+      return;
+    }
+    
+    timeUntilOctober.days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    timeUntilOctober.hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    timeUntilOctober.minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    timeUntilOctober.seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+  }
+
   onMount(() => {
     generateAdventDays();
+    updateTimer();
+    
+    // Actualizar el timer cada segundo
+    const timerInterval = setInterval(updateTimer, 1000);
+    
+    return () => {
+      clearInterval(timerInterval);
+    };
   });
 
   $effect(() => {
@@ -71,7 +111,7 @@
   $effect(() => {
 
     const listRewards = adventDays.map((day) => day.reward);
-    console.log(listRewards);
+    // console.log(listRewards);
   });
 </script>
 
@@ -79,6 +119,34 @@
   <header class="calendar-header">
     <h1 class="title">🍂 {year} 🍂</h1>
     <p class="subtitle">Un día, un detalle, un recuerdo, un nosotros.</p>
+    
+    {#if showTimer && !isOctober}
+      <div class="timer-container">
+        <h2 class="timer-title">⏰ La paciencia es una virtud</h2>
+        <div class="timer-display">
+          <div class="timer-unit">
+            <span class="timer-number">{timeUntilOctober.days}</span>
+            <span class="timer-label">Días</span>
+          </div>
+          <div class="timer-separator">:</div>
+          <div class="timer-unit">
+            <span class="timer-number">{timeUntilOctober.hours.toString().padStart(2, '0')}</span>
+            <span class="timer-label">Horas</span>
+          </div>
+          <div class="timer-separator">:</div>
+          <div class="timer-unit">
+            <span class="timer-number">{timeUntilOctober.minutes.toString().padStart(2, '0')}</span>
+            <span class="timer-label">Min</span>
+          </div>
+          <div class="timer-separator">:</div>
+          <div class="timer-unit">
+            <span class="timer-number">{timeUntilOctober.seconds.toString().padStart(2, '0')}</span>
+            <span class="timer-label">Seg</span>
+          </div>
+        </div>
+      </div>
+    {/if}
+    
     {#if testMode}
       <div class="test-mode-banner">
         🧪 Modo Prueba - Todas las tarjetas están desbloqueadas
@@ -123,6 +191,69 @@
     margin: 0;
   }
 
+  .timer-container {
+    background: linear-gradient(135deg, #d49270, #bd7d62);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 8px 20px rgba(189, 125, 98, 0.3);
+    border: 2px solid #f4d6b4;
+    animation: timerGlow 3s ease-in-out infinite alternate;
+  }
+
+  .timer-title {
+    color: #f7ebdb;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .timer-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(247, 235, 219, 0.2);
+    border-radius: 12px;
+    padding: 0.75rem;
+    min-width: 60px;
+    border: 1px solid rgba(244, 214, 180, 0.3);
+  }
+
+  .timer-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f7ebdb;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1;
+  }
+
+  .timer-label {
+    font-size: 0.8rem;
+    color: #f4d6b4;
+    font-weight: 600;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .timer-separator {
+    font-size: 1.5rem;
+    color: #f7ebdb;
+    font-weight: bold;
+    margin: 0 0.25rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
   .test-mode-banner {
     background: linear-gradient(45deg, #d49270, #f4d6b4);
     color: #f7ebdb;
@@ -151,6 +282,15 @@
     }
   }
 
+  @keyframes timerGlow {
+    0% {
+      box-shadow: 0 8px 20px rgba(189, 125, 98, 0.3);
+    }
+    100% {
+      box-shadow: 0 8px 30px rgba(189, 125, 98, 0.5), 0 0 20px rgba(244, 214, 180, 0.3);
+    }
+  }
+
   @media (max-width: 768px) {
     .advent-calendar {
       padding: 1rem;
@@ -158,6 +298,37 @@
 
     .title {
       font-size: 2rem;
+    }
+
+    .timer-container {
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .timer-title {
+      font-size: 1.1rem;
+    }
+
+    .timer-display {
+      gap: 0.25rem;
+    }
+
+    .timer-unit {
+      padding: 0.5rem;
+      min-width: 50px;
+    }
+
+    .timer-number {
+      font-size: 1.4rem;
+    }
+
+    .timer-label {
+      font-size: 0.7rem;
+    }
+
+    .timer-separator {
+      font-size: 1.2rem;
+      margin: 0 0.1rem;
     }
   }
 </style>

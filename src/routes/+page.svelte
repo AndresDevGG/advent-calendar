@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import Icon from "@iconify/svelte";
 
   let mounted = false;
   let modalOpen = false;
@@ -47,7 +48,7 @@
   onMount(() => {
     mounted = true;
     document.addEventListener("keydown", handleKeydown);
-    
+
     // Cargar las primeras 6 imágenes inmediatamente para una mejor experiencia inicial
     const initialLoadCount = Math.min(6, images.length);
     for (let i = 0; i < initialLoadCount; i++) {
@@ -56,24 +57,27 @@
       }
     }
     loadingProgress = Math.round((loadedImages.length / images.length) * 100);
-    
+
     // Configurar Intersection Observer para lazy loading
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            const index = parseInt(
+              entry.target.getAttribute("data-index") || "0"
+            );
             if (!loadedImages.includes(index)) {
               loadedImages = [...loadedImages, index];
-              loadingProgress = Math.round((loadedImages.length / images.length) * 100);
-              console.log(`Imagen ${index} marcada para cargar. Total cargadas: ${loadedImages.length}`);
+              loadingProgress = Math.round(
+                (loadedImages.length / images.length) * 100
+              );
             }
           }
         });
       },
       {
-        rootMargin: '50px',
-        threshold: 0.1
+        rootMargin: "50px",
+        threshold: 0.1,
       }
     );
 
@@ -94,7 +98,7 @@
     currentImageIndex = index;
     modalOpen = true;
     document.body.style.overflow = "hidden";
-    
+
     // Precargar imágenes adyacentes para el modal
     preloadModalImages(index);
   }
@@ -103,8 +107,8 @@
     // Precargar imagen anterior y siguiente
     const prevIndex = (currentIndex - 1 + images.length) % images.length;
     const nextIndex = (currentIndex + 1) % images.length;
-    
-    [prevIndex, currentIndex, nextIndex].forEach(index => {
+
+    [prevIndex, currentIndex, nextIndex].forEach((index) => {
       if (!loadedImages.includes(index)) {
         const img = new Image();
         img.src = `/images/${images[index]}`;
@@ -254,26 +258,10 @@
               class="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform group-hover:scale-105"
               style="background-color: #d49270;"
             >
-              <svg
-                class="w-16 h-16"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                style="color: #f7ebdb;"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                ></path>
-              </svg>
-            </div>
-            <div
-              class="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center"
-              style="background-color: #d8b186;"
-            >
-              <span class="font-bold text-sm" style="color: #bd7d62;">💕</span>
+              <Icon
+                class="w-16 h-16 text-[#f7ebdb]"
+                icon={"mingcute:heart-line"}
+              />
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-4" style="color: #bd7d62;">
@@ -293,26 +281,10 @@
               class="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform group-hover:scale-105"
               style="background-color: #bd7d62;"
             >
-              <svg
-                class="w-16 h-16"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                style="color: #f7ebdb;"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-                ></path>
-              </svg>
-            </div>
-            <div
-              class="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center"
-              style="background-color: #f4d6b4;"
-            >
-              <span class="font-bold text-sm" style="color: #bd7d62;">🎂</span>
+              <Icon
+                class="w-16 h-16 text-[#f7ebdb]"
+                icon={"mingcute:cake-line"}
+              />
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-4" style="color: #bd7d62;">
@@ -332,26 +304,10 @@
               class="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform group-hover:scale-105"
               style="background-color: #d8b186;"
             >
-              <svg
-                class="w-16 h-16"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                style="color: #bd7d62;"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                ></path>
-              </svg>
-            </div>
-            <div
-              class="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center"
-              style="background-color: #d49270;"
-            >
-              <span class="font-bold text-sm" style="color: #f7ebdb;">🍂</span>
+            <Icon
+                class="w-16 h-16 text-[#bd7d62]"
+                icon={"mingcute:gift-line"}
+              />
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-4" style="color: #bd7d62;">
@@ -383,11 +339,21 @@
       {#if loadingProgress < 100}
         <div class="mb-8 max-w-md mx-auto">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-sm font-medium" style="color: #d49270;">Cargando recuerdos...</span>
-            <span class="text-sm font-medium" style="color: #d49270;">{loadingProgress}%</span>
+            <span class="text-sm font-medium" style="color: #d49270;"
+              >Cargando recuerdos...</span
+            >
+            <span class="text-sm font-medium" style="color: #d49270;"
+              >{loadingProgress}%</span
+            >
           </div>
-          <div class="w-full h-2 rounded-full" style="background-color: rgba(212, 146, 112, 0.2);">
-            <div class="h-full rounded-full transition-all duration-500" style="background: linear-gradient(to right, #d49270, #bd7d62); width: {loadingProgress}%"></div>
+          <div
+            class="w-full h-2 rounded-full"
+            style="background-color: rgba(212, 146, 112, 0.2);"
+          >
+            <div
+              class="h-full rounded-full transition-all duration-500"
+              style="background: linear-gradient(to right, #d49270, #bd7d62); width: {loadingProgress}%"
+            ></div>
           </div>
         </div>
       {/if}
@@ -396,57 +362,95 @@
         class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"
       >
         <!-- Imágenes reales -->
-         {#each images as image, index}
-           <div
-             class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
-             on:click={() => openModal(index)}
-             on:keydown={(e) => e.key === "Enter" && openModal(index)}
-             role="button"
-             tabindex="0"
-             aria-label="Ver imagen {index + 1} en grande"
-             data-index={index}
-             bind:this={imageRefs[index]}
-           >
-             <div class="aspect-square relative">
-               <div
-                 class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center"
-               >
-                 {#if imageLoadErrors.includes(index)}
-                   <!-- Estado de error -->
-                   <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #f4d6b4, #d8b186);">
-                     <div class="text-center">
-                       <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #bd7d62;">
-                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                       </svg>
-                       <div class="text-xs font-medium" style="color: #bd7d62;">Error al cargar</div>
-                     </div>
-                   </div>
-                 {:else if loadedImages.includes(index)}
-                   <img
-                     src="/images/{image}"
-                     alt="Momento especial {index + 1}"
-                     class="w-full h-full object-cover"
-                     on:error={() => handleImageError(index)}
-                   />
-                 {:else}
-                   <!-- Placeholder mientras carga -->
-                   <div class="w-full h-full flex items-center justify-center relative" style="background: linear-gradient(135deg, #f4d6b4, #d8b186);">
-                     <div class="text-center">
-                       <svg class="w-12 h-12 mx-auto mb-2 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #bd7d62;">
-                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                       </svg>
-                       <div class="text-xs font-medium" style="color: #bd7d62;">Cargando...</div>
-                     </div>
-                     <!-- Barra de progreso sutil -->
-                     <div class="absolute bottom-2 left-2 right-2 h-1 rounded-full" style="background-color: rgba(189, 125, 98, 0.2);">
-                       <div class="h-full rounded-full transition-all duration-500" style="background-color: #bd7d62; width: {loadingProgress}%"></div>
-                     </div>
-                   </div>
-                 {/if}
-               </div>
-             </div>
-           </div>
-         {/each}
+        {#each images as image, index}
+          <div
+            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+            on:click={() => openModal(index)}
+            on:keydown={(e) => e.key === "Enter" && openModal(index)}
+            role="button"
+            tabindex="0"
+            aria-label="Ver imagen {index + 1} en grande"
+            data-index={index}
+            bind:this={imageRefs[index]}
+          >
+            <div class="aspect-square relative">
+              <div
+                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center"
+              >
+                {#if imageLoadErrors.includes(index)}
+                  <!-- Estado de error -->
+                  <div
+                    class="w-full h-full flex items-center justify-center"
+                    style="background: linear-gradient(135deg, #f4d6b4, #d8b186);"
+                  >
+                    <div class="text-center">
+                      <svg
+                        class="w-12 h-12 mx-auto mb-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        style="color: #bd7d62;"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                        ></path>
+                      </svg>
+                      <div class="text-xs font-medium" style="color: #bd7d62;">
+                        Error al cargar
+                      </div>
+                    </div>
+                  </div>
+                {:else if loadedImages.includes(index)}
+                  <img
+                    src="/images/{image}"
+                    alt="Momento especial {index + 1}"
+                    class="w-full h-full object-cover"
+                    on:error={() => handleImageError(index)}
+                  />
+                {:else}
+                  <!-- Placeholder mientras carga -->
+                  <div
+                    class="w-full h-full flex items-center justify-center relative"
+                    style="background: linear-gradient(135deg, #f4d6b4, #d8b186);"
+                  >
+                    <div class="text-center">
+                      <svg
+                        class="w-12 h-12 mx-auto mb-2 animate-pulse"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        style="color: #bd7d62;"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                      <div class="text-xs font-medium" style="color: #bd7d62;">
+                        Cargando...
+                      </div>
+                    </div>
+                    <!-- Barra de progreso sutil -->
+                    <div
+                      class="absolute bottom-2 left-2 right-2 h-1 rounded-full"
+                      style="background-color: rgba(189, 125, 98, 0.2);"
+                    >
+                      <div
+                        class="h-full rounded-full transition-all duration-500"
+                        style="background-color: #bd7d62; width: {loadingProgress}%"
+                      ></div>
+                    </div>
+                  </div>
+                {/if}
+              </div>
+            </div>
+          </div>
+        {/each}
       </div>
     </div>
   </section>

@@ -13,7 +13,6 @@
 
   let { year = new Date().getFullYear(), onDayClick, testMode }: Props = $props();
 
-  let currentDay = new Date().getDate();
   let currentMonth = new Date().getMonth() + 1; // Enero es 0
   let isOctober = currentMonth === 10; // Octubre es 10
   let today = new Date().getDate();

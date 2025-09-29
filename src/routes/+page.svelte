@@ -9,6 +9,8 @@
   let imageRefs: HTMLElement[] = [];
   let loadingProgress = 0;
   let imageLoadErrors: number[] = [];
+  let currentBatch = 0;
+  let isLoading = false;
 
   // Array de imágenes disponibles
   const images = [
@@ -49,48 +51,10 @@
     mounted = true;
     document.addEventListener("keydown", handleKeydown);
 
-    // Cargar las primeras 6 imágenes inmediatamente para una mejor experiencia inicial
-    const initialLoadCount = Math.min(6, images.length);
-    for (let i = 0; i < initialLoadCount; i++) {
-      if (!loadedImages.includes(i)) {
-        loadedImages = [...loadedImages, i];
-      }
-    }
-    loadingProgress = Math.round((loadedImages.length / images.length) * 100);
-
-    // Configurar Intersection Observer para lazy loading
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(
-              entry.target.getAttribute("data-index") || "0"
-            );
-            if (!loadedImages.includes(index)) {
-              loadedImages = [...loadedImages, index];
-              loadingProgress = Math.round(
-                (loadedImages.length / images.length) * 100
-              );
-            }
-          }
-        });
-      },
-      {
-        rootMargin: "50px",
-        threshold: 0.1,
-      }
-    );
-
-    // Observar todas las imágenes después de un pequeño delay para asegurar que estén en el DOM
-    setTimeout(() => {
-      imageRefs.forEach((ref) => {
-        if (ref) observer.observe(ref);
-      });
-    }, 100);
+    loadNextBatch();
 
     return () => {
       document.removeEventListener("keydown", handleKeydown);
-      observer.disconnect();
     };
   });
 
@@ -99,20 +63,28 @@
     modalOpen = true;
     document.body.style.overflow = "hidden";
 
-    // Precargar imágenes adyacentes para el modal
     preloadModalImages(index);
   }
 
   function preloadModalImages(currentIndex: number) {
-    // Precargar imagen anterior y siguiente
     const prevIndex = (currentIndex - 1 + images.length) % images.length;
     const nextIndex = (currentIndex + 1) % images.length;
 
     [prevIndex, currentIndex, nextIndex].forEach((index) => {
-      if (!loadedImages.includes(index)) {
+      if (!loadedImages.includes(index) && !imageLoadErrors.includes(index)) {
         const img = new Image();
+        img.onload = () => {
+          if (!loadedImages.includes(index)) {
+            loadedImages = [...loadedImages, index];
+            loadingProgress = Math.round((loadedImages.length / images.length) * 100);
+          }
+        };
+        img.onerror = () => {
+          if (!imageLoadErrors.includes(index)) {
+            imageLoadErrors = [...imageLoadErrors, index];
+          }
+        };
         img.src = `/images/${images[index]}`;
-        loadedImages = [...loadedImages, index];
       }
     });
   }
@@ -148,35 +120,61 @@
     }
   }
 
-  function handleMouseEnter(event: MouseEvent) {
-    (event.target as HTMLElement).style.backgroundColor = "#bd7d62";
-  }
 
-  function handleMouseLeave(event: MouseEvent) {
-    (event.target as HTMLElement).style.backgroundColor = "#d49270";
-  }
-
-  function handleMouseEnter2(event: MouseEvent) {
-    (event.target as HTMLElement).style.backgroundColor = "#f4d6b4";
-  }
-
-  function handleMouseLeave2(event: MouseEvent) {
-    (event.target as HTMLElement).style.backgroundColor = "#f7ebdb";
-  }
-
-  function handleMouseEnter3(event: MouseEvent) {
-    (event.target as HTMLElement).style.backgroundColor = "#d8b186";
-  }
-
-  function handleMouseLeave3(event: MouseEvent) {
-    (event.target as HTMLElement).style.backgroundColor = "#d49270";
-  }
 
   function handleImageError(index: number) {
     if (!imageLoadErrors.includes(index)) {
       imageLoadErrors = [...imageLoadErrors, index];
     }
     console.warn(`Error cargando imagen ${index + 1}: ${images[index]}`);
+  }
+
+  function loadNextBatch() {
+    if (isLoading || currentBatch * 5 >= images.length) return;
+    
+    isLoading = true;
+    const batchSize = 5;
+    const startIndex = currentBatch * batchSize;
+    const endIndex = Math.min(startIndex + batchSize, images.length);
+    
+    console.log(`Cargando lote ${currentBatch + 1}: imágenes ${startIndex + 1} a ${endIndex}`);
+    
+    const loadPromises = [];
+    for (let i = startIndex; i < endIndex; i++) {
+      const promise = new Promise<void>((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          if (!loadedImages.includes(i)) {
+            loadedImages = [...loadedImages, i];
+            loadingProgress = Math.round((loadedImages.length / images.length) * 100);
+            console.log(`Imagen ${i + 1} cargada exitosamente`);
+          }
+          resolve();
+        };
+        img.onerror = () => {
+          if (!imageLoadErrors.includes(i)) {
+            imageLoadErrors = [...imageLoadErrors, i];
+          }
+          console.warn(`Error cargando imagen ${i + 1}: ${images[i]}`);
+          resolve();
+        };
+        img.src = `/images/${images[i]}`;
+      });
+      loadPromises.push(promise);
+    }
+    
+    Promise.all(loadPromises).then(() => {
+      isLoading = false;
+      currentBatch++;
+      
+      if (currentBatch * 5 < images.length) {
+        setTimeout(() => {
+          loadNextBatch();
+        }, 500);
+      } else {
+        console.log('Todas las imágenes han sido cargadas');
+      }
+    });
   }
 </script>
 
@@ -339,12 +337,12 @@
       {#if loadingProgress < 100}
         <div class="mb-8 max-w-md mx-auto">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-sm font-medium" style="color: #d49270;"
-              >Cargando recuerdos...</span
-            >
-            <span class="text-sm font-medium" style="color: #d49270;"
-              >{loadingProgress}%</span
-            >
+            <span class="text-sm font-medium" style="color: #d49270;">
+              {isLoading ? `Cargando lote ${currentBatch + 1}...` : 'Cargando recuerdos...'}
+            </span>
+            <span class="text-sm font-medium" style="color: #d49270;">
+              {loadedImages.length} / {images.length} ({loadingProgress}%)
+            </span>
           </div>
           <div
             class="w-full h-2 rounded-full"
@@ -354,6 +352,13 @@
               class="h-full rounded-full transition-all duration-500"
               style="background: linear-gradient(to right, #d49270, #bd7d62); width: {loadingProgress}%"
             ></div>
+          </div>
+          <div class="text-xs text-center mt-2" style="color: #d49270;">
+            {#if isLoading}
+              Cargando imágenes {currentBatch * 5 + 1} a {Math.min((currentBatch + 1) * 5, images.length)}...
+            {:else}
+              {loadedImages.length} de {images.length} imágenes cargadas
+            {/if}
           </div>
         </div>
       {/if}
@@ -459,12 +464,10 @@
   <section class="py-20" style="background-color: #bd7d62;">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl font-bold mb-6" style="color: #f7ebdb;">
-        ¿Listo para comenzar tu aventura?
+        ¿Lista para comenzar?
       </h2>
       <p class="text-xl mb-8" style="color: #f4d6b4;">
-        Descubre la magia de cada día con nuestro calendario de adviento
-        personalizado. Cada día trae una nueva sorpresa y una nueva razón para
-        sonreír.
+        Descubre la alegría de cada día con este calendario de adviento mi amor, me esforcé para que tuvieras un regalo especial, como tú, disfruta cada uno de forma especial, Te Amo.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
@@ -484,7 +487,7 @@
               d="M13 10V3L4 14h7v7l9-11h-7z"
             ></path>
           </svg>
-          Comenzar Ahora
+          Ir al Calendario
         </a>
       </div>
     </div>

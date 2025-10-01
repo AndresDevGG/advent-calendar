@@ -10,8 +10,9 @@
   let testMode = $state(false); // Toggle para modo prueba
   let showConfetti = $state(false);
   let showAlert = $state(false);
-  let alertMessage = $state('');
+  let alertMessage = $state("");
   let alertTimeout: number | null = null;
+  let rewardRevealed = $state(false);
 
   let currentIndexError = $state(0);
   const blockedMessages = [
@@ -29,7 +30,7 @@
     "¡Todo a su tiempo! ⏰",
     "¡Respira hondo! 🫁",
     "¡La paciencia es una virtud! 🧘‍♀️",
-    "¡No te adelantes! 🏃‍♀️"
+    "¡No te adelantes! 🏃‍♀️",
   ];
 
   function handleDayClick(day: number, data: AdventDayData) {
@@ -40,7 +41,6 @@
       return;
     }
 
-    showConfetti = day === new Date().getDate();
     selectedDay = data;
     showModal = true;
   }
@@ -50,10 +50,10 @@
     if (alertTimeout) {
       clearTimeout(alertTimeout);
     }
-    
+
     alertMessage = message;
     showAlert = true;
-    
+
     // Crear nuevo timeout para ocultar la alerta después de 3 segundos
     alertTimeout = setTimeout(() => {
       showAlert = false;
@@ -64,6 +64,16 @@
   function closeModal() {
     showModal = false;
     selectedDay = null;
+    rewardRevealed = false; // Resetear el estado del regalo al cerrar el modal
+    showConfetti = false; // Ocultar confetti al cerrar el modal
+  }
+
+  function revealReward() {
+    // Mostrar confetti solo cuando se revela el regalo del día actual
+    if (selectedDay && selectedDay.day === new Date().getDate()) {
+      showConfetti = true;
+    }
+    rewardRevealed = true;
   }
 
   $effect(() => {
@@ -107,7 +117,7 @@
     >
       {#if showConfetti}
         <div
-		class="fixed top-[-50px] left-0 h-screen w-screen flex justify-center overflow-hidden pointer-events-none z-10000"
+          class="fixed top-[-50px] left-0 h-screen w-screen flex justify-center overflow-hidden pointer-events-none z-10000"
         >
           <Confetti
             x={[-5, 5]}
@@ -147,14 +157,41 @@
         </div>
 
         <div class="modal-body">
-          <h3>{selectedDay.description}</h3>
+          <h3 class="text-md text-justify">{selectedDay.description}</h3>
           <!-- <p>¡Felicidades! Has descubierto la sorpresa del día {selectedDay.day} de octubre.</p> -->
 
           <div class="reward-content">
-            <p>🎁 Tu recompensa especial:</p>
-            <div class="reward-box">
-              {selectedDay.content}
-            </div>
+            <p>{selectedDay.day === new Date().getDate() ? '' : '🎁'} Tu regalo es:</p>
+            {#if selectedDay.day === new Date().getDate()}
+              <!-- Regalo del día actual con animación -->
+              <div
+                class="reward-box interactive-reward"
+                class:revealed={rewardRevealed}
+                onclick={revealReward}
+                role="button"
+                tabindex="0"
+                onkeydown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    revealReward();
+                  }
+                }}
+              >
+                {#if rewardRevealed}
+                  {selectedDay.content}
+                {:else}
+                  <div class="reward-placeholder">
+                    <div class="gift-icon">🎁</div>
+                    <div class="touch-hint">¡Tócame para revelar!</div>
+                  </div>
+                {/if}
+              </div>
+            {:else}
+              <!-- Regalo de días anteriores sin animación -->
+              <div class="reward-box">
+                {selectedDay.content}
+              </div>
+            {/if}
           </div>
         </div>
 
@@ -298,7 +335,7 @@
 
   .modal-body h3 {
     color: #d49270;
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
     margin-bottom: 1rem;
   }
 
@@ -329,6 +366,51 @@
     font-weight: bold;
     color: #f7ebdb;
     font-size: 1.1rem;
+  }
+
+  .interactive-reward {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .interactive-reward:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(189, 125, 98, 0.4);
+  }
+
+  .interactive-reward:not(.revealed) {
+    background: linear-gradient(135deg, #d8b186, #c4a070);
+    border-color: #bd7d62;
+    animation: giftGlow 2s ease-in-out infinite alternate;
+  }
+
+  .interactive-reward.revealed {
+    background: #d8b186;
+    animation: rewardReveal 3s ease-out;
+  }
+
+  .reward-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .gift-icon {
+    font-size: 2rem;
+    animation: giftBounce 1.5s ease-in-out infinite;
+  }
+
+  .touch-hint {
+    font-size: 0.9rem;
+    color: #f7ebdb;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    animation: hintPulse 2s ease-in-out infinite;
   }
 
   .modal-footer {
@@ -397,7 +479,8 @@
   }
 
   @keyframes alertShake {
-    0%, 100% {
+    0%,
+    100% {
       transform: rotate(0deg);
     }
     25% {
@@ -405,6 +488,52 @@
     }
     75% {
       transform: rotate(10deg);
+    }
+  }
+
+  @keyframes giftGlow {
+    0% {
+      box-shadow: 0 0 10px rgba(189, 125, 98, 0.3);
+    }
+    100% {
+      box-shadow:
+        0 0 20px rgba(189, 125, 98, 0.6),
+        0 0 30px rgba(244, 214, 180, 0.3);
+    }
+  }
+
+  @keyframes giftBounce {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-5px) scale(1.1);
+    }
+  }
+
+  @keyframes hintPulse {
+    0%,
+    100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes rewardReveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
@@ -438,6 +567,14 @@
 
     .alert-icon {
       font-size: 1.2rem;
+    }
+
+    .gift-icon {
+      font-size: 1.5rem;
+    }
+
+    .touch-hint {
+      font-size: 0.8rem;
     }
   }
 </style>

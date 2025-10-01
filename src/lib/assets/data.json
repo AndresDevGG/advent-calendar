@@ -2,44 +2,44 @@
     "data": [
         {
             "day": 1,
-            "content": "¡Bienvenido a octubre! 🍂\n\nEl primer día de nuestro mes especial. Cada día será una nueva sorpresa llena de amor.",
-            "description": "Inicio del Mes",
-            "reward": "Mancuernas",
+            "content": "¡Una manta! 🧥",
+            "description": "Hoy iniciamos esta emocionante dinámica, empezamos un mes muy especial y espero que disfrutes cada día, ¿no crees que ha estado haciendo mucho frio ultimamente? 🥶",
+            "reward": "Manta",
             "backgroundColor": "#d8b186",
             "icon": "cloud-line",
             "illustration": "/illustrations/illustration-1.png"
         },
         {
             "day": 2,
-            "content": "Día de risas compartidas 😄\n\nHoy te regalo una sonrisa y la promesa de que siempre te haré reír, incluso en los días más grises.",
-            "description": "Sonrisa Especial",
-            "reward": "Libreta",
+            "content": "¡Medias peluditas! 🧦",
+            "description": "Para cuando estemos en la sala o en la cama y haya mucho frío, esto te servirá.",
+            "reward": "Medias peluditas",
             "backgroundColor": "#f7ebdb",
             "icon": "angel-line",
             "illustration": "/illustrations/illustration-2.png"
         },
         {
             "day": 3,
-            "content": "Momento de paz juntos 🕯️\n\nUna velada tranquila, solo tú y yo, disfrutando de la calma y la compañía del otro.",
-            "description": "Paz Compartida",
-            "reward": "Flores",
+            "content": "¡Unas Mancuernas! 🌺",
+            "description": "Para ti que estás esforzandote en hacer ejercicio, esto te ayudará a tener mejores resultados.",
+            "reward": "Mancuernas",
             "backgroundColor": "#f4d6b4",
             "icon": "candle-line",
             "illustration": "/illustrations/illustration-3.png"
         },
         {
             "day": 4,
-            "content": "Aventura culinaria 👨‍🍳\n\nHoy cocinamos juntos algo delicioso. La cocina es más divertida cuando estamos los dos.",
-            "description": "Chef por un Día",
-            "reward": "Cena",
+            "content": "¡Una libreta! 📓",
+            "description": "Para cuando necesites tomar notas o escribir algo importante, por ejemplo: Amo mucho a Feli ❤️.",
+            "reward": "Libreta",
             "backgroundColor": "#f7ebdb",
             "icon": "full-moon-line",
             "illustration": "/illustrations/illustration-4.png"
         },
         {
             "day": 5,
-            "content": "Día de música y baile 🎵\n\nPonemos nuestra canción favorita y bailamos como si nadie nos viera. Solo tú y yo.",
-            "description": "Bailarines del Corazón",
+            "content": "¡CD NFC Yours Truly! 💽",
+            "description": "Su debut, con un sonido inspirado en el R&B y el pop de los 90. Mezcla baladas románticas y temas juveniles, destacando The Way y Baby I.",
             "reward": "Yours Truly",
             "backgroundColor": "#d8b186",
             "icon": "music-2-line",
@@ -47,8 +47,8 @@
         },
         {
             "day": 6,
-            "content": "Paseo romántico 🌅\n\nUn paseo al atardecer, tomados de la mano, viendo cómo el sol se despide del día.",
-            "description": "Paseo al Atardecer",
+            "content": "¡CD NFC My Everything! 💽",
+            "description": "Su segundo álbum, con un sonido más maduro y melódico, destacando Love Me Harder y One Last Time.",
             "reward": "My Everything",
             "backgroundColor": "#f4d6b4",
             "icon": "sun-2-line",
@@ -56,8 +56,8 @@
         },
         {
             "day": 7,
-            "content": "Día de películas 🎬\n\nMaratón de nuestras películas favoritas, con palomitas y manta compartida.",
-            "description": "Noche de Cine",
+            "content": "¡CD NFC Dangerous Woman! 💽",
+            "description": "Un álbum más maduro y sensual, donde mezcla pop, R&B y un poco de reggae y rock. Temas destacados: Into You, Side to Side, Dangerous Woman.",
             "reward": "Dangerous Woman",
             "backgroundColor": "#d8b186",
             "icon": "rabbit-line",
@@ -65,8 +65,8 @@
         },
         {
             "day": 8,
-            "content": "Mensaje de amor 💌\n\nUna carta escrita a mano, con todas las cosas que amo de ti. Las palabras del corazón.",
-            "description": "Carta de Amor",
+            "content": "¡CD NFC Sweetener! 💽",
+            "description": "Con producción de Pharrell y un sonido experimental entre pop, R&B y trap. Letras más optimistas y personales. Éxitos: No Tears Left to Cry, God Is a Woman. Como dato curioso, este album inspira la paleta de colores de este sitio.",
             "reward": "Sweetener",
             "backgroundColor": "#f7ebdb",
             "icon": "hail-line",
@@ -74,8 +74,8 @@
         },
         {
             "day": 9,
-            "content": "Día de fotos 📸\n\nCapturamos momentos especiales juntos. Cada foto es un recuerdo que atesoraremos para siempre.",
-            "description": "Memorias Capturadas",
+            "content": "¡CD NFC Thank U, Next! 💽",
+            "description": "Nació tras momentos difíciles de su vida. Un disco introspectivo pero también con confianza y empoderamiento. Canciones como thank u, next, 7 rings y break up with your girlfriend, i’m bored.",
             "reward": "Thank U, Next",
             "backgroundColor": "#f4d6b4",
             "icon": "shoe-2-line",
@@ -83,8 +83,8 @@
         },
         {
             "day": 10,
-            "content": "Desayuno especial 🥞\n\nTe preparo tu desayuno favorito. Empezar el día con amor es la mejor manera.",
-            "description": "Desayuno con Amor",
+            "content": "¡CD NFC Positions! 💽",
+            "description": "Más íntimo, con un sonido R&B sofisticado y líricas centradas en el amor y la sensualidad. Destacan positions, pov y 34+35.",
             "reward": "Positions",
             "backgroundColor": "#d8b186",
             "icon": "teacup-line",
@@ -92,8 +92,8 @@
         },
         {
             "day": 11,
-            "content": "Día de juegos 🎮\n\nCompetimos en nuestros juegos favoritos. El ganador se lleva un beso como premio.",
-            "description": "Noche de Juegos",
+            "content": "¡CD NFC Eternal Sunshine! 💽",
+            "description": "Su regreso tras 4 años, con un enfoque más emocional y vulnerable, inspirado en el cine clásico y en la superación personal. Canciones como yes, and?, we can’t be friends (wait for your love).",
             "reward": "Eternal Sunshine",
             "backgroundColor": "#f7ebdb",
             "icon": "bling-line",
@@ -144,7 +144,7 @@
             "icon": "cactus-line",
             "illustration": "/illustrations/illustration-4.png"
         },
-        {   
+        {
             "day": 17,
             "content": "Día de regalos sorpresa 🎁\n\nUn pequeño regalo que te hará sonreír. Los detalles pequeños son los que más importan.",
             "description": "Sorpresa Especial",

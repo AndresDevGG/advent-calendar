@@ -30,16 +30,20 @@
   let adventDays: AdventDayData[] = $state([]);
 
   function generateAdventDays() {
-    
-
     adventDays = calendarData.data.map((dayData, index) => {
+      const currentHour = new Date().getHours();
       const dayNumber = dayData.day;
       const isPast = isOctober && dayNumber < today;
       const isToday = isOctober && dayNumber === today;
+      const isTimeRestricted = isOctober && dayNumber === today && currentHour < 8;
 
       // En modo prueba, todos los días están desbloqueados
       // En modo normal, solo los días futuros están bloqueados (si estamos en octubre)
-      const isLocked = testMode ? false : isOctober ? dayNumber > today : true;
+      const isLocked = (() => {
+        if (testMode) return false;
+        if (isOctober) return dayNumber > today || isTimeRestricted;
+        return true;
+      })();
 
       // Solo log para los primeros 5 días para no saturar la consola
       if (false && dayNumber > 14 && dayNumber <= 20) {

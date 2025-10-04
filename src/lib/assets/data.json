@@ -20,7 +20,7 @@
         },
         {
             "day": 3,
-            "content": "¡Unas Mancuernas! 🌺",
+            "content": "¡Unas Mancuernas! 💪🏼",
             "description": "Para ti que estás esforzandote en hacer ejercicio, esto te ayudará a tener mejores resultados.",
             "reward": "Mancuernas",
             "backgroundColor": "#f4d6b4",
@@ -29,9 +29,9 @@
         },
         {
             "day": 4,
-            "content": "¡Una libreta! 📓",
-            "description": "Para cuando necesites tomar notas o escribir algo importante, por ejemplo: Amo mucho a Feli ❤️.",
-            "reward": "Libreta",
+            "content": "¡Una Gorra! 🧢",
+            "description": "Para días soleados o para simplemente combinar con tu outfit, con un mensaje digno de ti.",
+            "reward": "Gorra",
             "backgroundColor": "#f7ebdb",
             "icon": "full-moon-line",
             "illustration": "/illustrations/illustration-4.png"
@@ -101,8 +101,8 @@
         },
         {
             "day": 12,
-            "content": "Mensaje de gratitud 🙏\n\nHoy te agradezco por estar en mi vida. Eres mi mayor bendición y mi mayor alegría.",
-            "description": "Gratitud Infinita",
+            "content": "¡Una libreta! 📓",
+            "description": "Para cuando necesites tomar notas o escribir algo importante, por ejemplo: Amo mucho a Feli ❤️.",
             "reward": "Pijama asarosa",
             "backgroundColor": "#d8b186",
             "icon": "coat-line",

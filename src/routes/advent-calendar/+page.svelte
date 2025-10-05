@@ -302,7 +302,7 @@
   }
 
   .day-illustration {
-    max-height: 400px;
+    max-height: 250px;
     width: auto;
     height: auto;
     border-radius: 12px;

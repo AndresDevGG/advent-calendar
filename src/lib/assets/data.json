@@ -74,9 +74,9 @@
         },
         {
             "day": 9,
-            "content": "¡CD NFC Thank U, Next! 💽",
-            "description": "Nació tras momentos difíciles de su vida. Un disco introspectivo pero también con confianza y empoderamiento. Canciones como thank u, next, 7 rings y break up with your girlfriend, i’m bored.",
-            "reward": "Thank U, Next",
+            "content": "¡Una libreta! 📓 ",
+            "description": "Para cuando necesites tomar notas o escribir algo importante, por ejemplo: Amo mucho a Feli ❤️.",
+            "reward": "Libreta",
             "backgroundColor": "#f4d6b4",
             "icon": "shoe-2-line",
             "illustration": "/illustrations/illustration-9.png"
@@ -101,9 +101,9 @@
         },
         {
             "day": 12,
-            "content": "¡Una libreta! 📓",
-            "description": "Para cuando necesites tomar notas o escribir algo importante, por ejemplo: Amo mucho a Feli ❤️.",
-            "reward": "Libreta",
+            "content": "¡CD NFC Thank U, Next! 💽",
+            "description": "Nació tras momentos difíciles de su vida. Un disco introspectivo pero también con confianza y empoderamiento. Canciones como thank u, next, 7 rings y break up with your girlfriend, i’m bored.",
+            "reward": "Thank U, Next",
             "backgroundColor": "#d8b186",
             "icon": "coat-line",
             "illustration": "/illustrations/illustration-12.png"

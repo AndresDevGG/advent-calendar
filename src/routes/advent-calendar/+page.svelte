@@ -161,7 +161,9 @@
           <!-- <p>¡Felicidades! Has descubierto la sorpresa del día {selectedDay.day} de octubre.</p> -->
 
           <div class="reward-content">
-            <p>{selectedDay.day === new Date().getDate() ? '' : '🎁'} Tu regalo es:</p>
+            <p>
+              {selectedDay.day === new Date().getDate() ? "" : "🎁"} Tu regalo es:
+            </p>
             {#if selectedDay.day === new Date().getDate()}
               <!-- Regalo del día actual con animación -->
               <div
@@ -178,7 +180,16 @@
                 }}
               >
                 {#if rewardRevealed}
-                  {selectedDay.content}
+                  {#if selectedDay.day === 13}
+                    <a
+                      href="https://www.airbnb.com/l/nxvsHff2?s=67&unique_share_id=48b8a29d-5208-496f-a0fc-7ecbb36c0366"
+                      target="_blank"
+                    >
+                      {selectedDay.content}
+                    </a>
+                  {:else}
+                    {selectedDay.content}
+                  {/if}
                 {:else}
                   <div class="reward-placeholder">
                     <div class="gift-icon">🎁</div>

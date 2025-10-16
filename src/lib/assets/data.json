@@ -137,9 +137,9 @@
         },
         {
             "day": 16,
-            "content": "¡Una bolsa para cólicos! 🧺",
-            "description": "Para esos días en los que estés sufriendo por culpa de los cólicos menstruales.",
-            "reward": "Bolsa para cólicos",
+            "content": "Cojin de Jensen Ackles! 😈",
+            "description": "Con quien pasarías la noche si no fuera conmigo?",
+            "reward": "Cojin de Jensen Ackles",
             "backgroundColor": "#f4d6b4",
             "icon": "cactus-line",
             "illustration": "/illustrations/illustration-4.png"
@@ -164,9 +164,9 @@
         },
         {
             "day": 19,
-            "content": "",
-            "description": "",
-            "reward": "Elphaba, la bruja mala de Oz",
+            "content": "¡Una bolsa para cólicos! 🧺",
+            "description": "Para esos días en los que estés sufriendo por culpa de los cólicos menstruales.",
+            "reward": "Bolsa para cólicoslphaba, la bruja mala de Oz",
             "backgroundColor": "#f4d6b4",
             "icon": "star-line",
             "illustration": "/illustrations/illustration-7.png"

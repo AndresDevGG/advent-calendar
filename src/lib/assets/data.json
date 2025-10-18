@@ -155,30 +155,30 @@
         },
         {
             "day": 18,
-            "content": "¡Carta de amor! 💌",
-            "description": "¡8 años juntos! 💕\n\nHoy celebramos nuestro aniversario. Cada día a tu lado es un motivo para ser feliz. Te amo más de lo que puedo expresar, pero quise plasmarlo de alguna manera...",
-            "reward": "Carta de amor",
+            "content": "Se rumora que vieron unas brujas cerca de unos lirios... 😮",
+            "description": "¡8 años juntos! Hoy celebramos nuestro aniversario. Cada día a tu lado es un motivo para ser feliz y te amo más de lo que puedo expresar, estoy aquí siempre, mi amor es sincero y solo a ti te imagino conmigo. Soy feliz con esta familia, soy feliz contigo, Te amo ❤️.",
+            "reward": "Glinda y Elphaba",
             "backgroundColor": "#d49270",
             "icon": "heart-line",
             "illustration": "/illustrations/illustration-10.png"
         },
         {
             "day": 19,
+            "content": "¡CD NFC Eternal Sunshine! 💽",
+            "description": "Un disco con vulnerabilidad y madurez, reflejando un proceso de sanación tras una ruptura, con un sonido más íntimo y cinematográfico que sus trabajos anteriores.",
+            "reward": "CD Eternal Sunshine",
+            "backgroundColor": "#d8b186",
+            "icon": "pig-line",
+            "illustration": "/illustrations/illustration-8.png"
+        },
+        {
+            "day": 20,
             "content": "¡Una bolsa para cólicos! 🧺",
             "description": "Para esos días en los que estés sufriendo por culpa de los cólicos menstruales.",
             "reward": "Bolsa para cólicoslphaba, la bruja mala de Oz",
             "backgroundColor": "#f4d6b4",
             "icon": "star-line",
             "illustration": "/illustrations/illustration-7.png"
-        },
-        {
-            "day": 20,
-            "content": "",
-            "description": "",
-            "reward": "Galinda, perdón, Glinda la bruja buena de Oz",
-            "backgroundColor": "#d8b186",
-            "icon": "pig-line",
-            "illustration": "/illustrations/illustration-8.png"
         },
         {
             "day": 21,

@@ -182,18 +182,18 @@
         },
         {
             "day": 21,
-            "content": "",
-            "description": "",
-            "reward": "",
+            "content": "¡Bloqueador y fijador! 💄",
+            "description": "Para que cuides tu carita del sol y también cuides tu maquillaje.",
+            "reward": "Bloqueador y fijador",
             "backgroundColor": "#f7ebdb",
             "icon": "palette-line",
             "illustration": "/illustrations/illustration-9.png"
         },
         {
             "day": 22,
-            "content": "",
-            "description": "",
-            "reward": "Cupon para no lavar los platos",
+            "content": "¡50 barritas! 💰",
+            "description": "Administralos como tu quieras, todo es abundancia y prosperidad.",
+            "reward": "50 barritas",
             "backgroundColor": "#f4d6b4",
             "icon": "rocket-line",
             "illustration": "/illustrations/illustration-10.png"

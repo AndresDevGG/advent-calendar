@@ -200,18 +200,18 @@
         },
         {
             "day": 23,
-            "content": "",
-            "description": "",
-            "reward": "Topitos",
+            "content": "¡Una pañoleta! 🧺",
+            "description": "Para que cuides tu cabello y combines con tu outfit, seguro se te va a ver muy bonita.",
+            "reward": "Pañoleta",
             "backgroundColor": "#d8b186",
             "icon": "tree-line",
             "illustration": "/illustrations/illustration-11.png"
         },
         {
             "day": 24,
-            "content": "",
-            "description": "",
-            "reward": "",
+            "content": "¡CD NFC Positions! 💽",
+            "description": "Este álbum explora la intimidad, la atracción romántica, el deseo, y también la recuperación personal y la auto-confianza.",
+            "reward": "Positions",
             "backgroundColor": "#f7ebdb",
             "icon": "moon-line",
             "illustration": "/illustrations/illustration-12.png"

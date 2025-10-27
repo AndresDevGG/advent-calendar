@@ -218,27 +218,27 @@
         },
         {
             "day": 25,
-            "content": "",
-            "description": "",
-            "reward": "",
+            "content": "¡Toalla para el cabello! 🧺",
+            "description": "Para que seques el cabello luego de un baño.",
+            "reward": "Toalla para el cabello",
             "backgroundColor": "#f4d6b4",
             "icon": "home-4-line",
             "illustration": "/illustrations/illustration-1.png"
         },
         {
             "day": 26,
-            "content": "",
-            "description": "",
-            "reward": "Dibujo",
+            "content": "¡Gorro para el cabello! 🧢",
+            "description": "Paraproteger el pelo mientras duermes o cuando estés en la casa.",
+            "reward": "Gorro para el cabello",
             "backgroundColor": "#d8b186",
             "icon": "car-line",
             "illustration": "/illustrations/illustration-2.png"
         },
         {
             "day": 27,
-            "content": "",
-            "description": "",
-            "reward": "50 barritas",
+            "content": "¡Bono para comprar ropa! 💰",
+            "description": "Ya sabes que ropa usar para el día de tu cumpleaños?",
+            "reward": "Bono para comprar ropa",
             "backgroundColor": "#f7ebdb",
             "icon": "album-line",
             "illustration": "/illustrations/illustration-3.png"

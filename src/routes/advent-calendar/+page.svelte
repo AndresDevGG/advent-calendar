@@ -162,7 +162,7 @@
 
           <div class="reward-content">
             <p>
-              {selectedDay.day === new Date().getDate() ? "" : "🎁"} Tu regalo es:
+              {selectedDay.day === new Date().getDate() ? "" : "🎁"} Tu { selectedDay.day === 28 ? "pista" : "regalo"} es:
             </p>
             {#if selectedDay.day === new Date().getDate()}
               <!-- Regalo del día actual con animación -->
